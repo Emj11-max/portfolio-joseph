@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Ehounoud | Développeur Web</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome (Icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS (Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --gold: #d4af37; /* Couleur or luxe */
+            --gold-hover: #b5952f;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f3f4f6; /* Force la couleur claire par défaut */
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- CORRECTION LISIBILITÉ --- */
+        p {
+            color: #d1d5db; /* Gris très clair pour une lecture parfaite */
+            line-height: 1.8; /* Aère les lignes de texte */
+            font-size: 1.05rem;
+        }
+        
+        .text-muted {
+            color: #cbd5e1 !important; /* Écrase le gris sombre de Bootstrap */
+        }
+        
+        .lead.text-muted {
+            color: #f8fafc !important; /* Encore plus clair pour le texte d'intro */
+            font-weight: 400;
+        }
+
+        /* --- NAVBAR GLASSMORPHISM --- */
+        .navbar {
+            background: rgba(10, 10, 10, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #f3f4f6;
+            font-weight: 400;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--gold);
+        }
+        .navbar-toggler { border: none; }
+        .navbar-toggler:focus { box-shadow: none; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .text-gold { color: var(--gold); }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #cbd5e1; /* Corrigé */
+            margin-bottom: 30px;
+        }
+        .status-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-weight: 500;
+        }
+
+        /* --- IMAGE PROFILE --- */
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            z-index: -1;
+            transition: 0.3s ease;
+        }
+        .profile-wrapper:hover::after {
+            top: 10px; left: 10px;
+        }
+        .profile-img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        /* --- BOUTONS --- */
+        .btn-gold {
+            background-color: var(--gold);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            transition: 0.3s;
+        }
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-3px);
+            color: #000;
+        }
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS & CARDS --- */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 0;
+        }
+        .card-custom {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: 0.4s ease;
+        }
+        .card-custom:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .tech-badge {
+            background: rgba(255,255,255,0.1); /* Plus visible */
+            color: #f8fafc; /* Texte blanc clair */
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 8px;
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- FOOTER & CONTACT --- */
+        .social-links a {
+            color: #f3f4f6;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+        footer {
+            background: #050505;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 991px) {
+            .hero { text-align: center; padding-top: 120px; }
+            .hero-title { font-size: 2.5rem; }
+            .profile-wrapper { margin-top: 50px; }
+            .section-title::after { left: 50%; transform: translateX(-50%); }
+            .section-title { text-align: center; display: block; }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-gold fs-3" href="#">J.E</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="fa fa-bars text-gold"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="status-badge">
+                        <i class="fa-solid fa-rocket me-2"></i> En recherche de stage / Alternance
+                    </div>
+                    <h1 class="hero-title">Salut, je suis <br><span class="text-gold">Joseph Ehounoud</span></h1>
+                    <p class="hero-subtitle mt-3">Développeur Web & Étudiant en Master 1 Informatique. Je conçois des solutions digitales modernes, performantes et orientées utilisateur.</p>
+                    
+                    <div class="d-flex flex-wrap gap-3 justify-content-lg-start justify-content-center mt-4">
+                        <a href="#contact" class="btn btn-gold">Me contacter</a>
+                        <a href="#" class="btn btn-outline-gold"><i class="fa-solid fa-download me-2"></i> Télécharger mon CV</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="profile-wrapper">
+                        <!-- REMPLACE "ta-photo.jpg" PAR LE NOM DE TON IMAGE -->
+                        <img src="photo.jpg" alt="Joseph Ehounoud" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-5 mt-5">
+        <div class="container">
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto text-lg-start text-center">
+                    <h2 class="section-title">À propos de moi</h2>
+                    <p class="lead text-muted">
+                        Actuellement en <strong>Master 1 Informatique à l’IUA</strong>, je suis passionné par l'architecture logicielle, le développement web et la gestion des bases de données.
+                    </p>
+                    <p class="text-muted">
+                        Mon objectif est d'apporter une réelle valeur ajoutée aux entreprises en développant des outils fiables, notamment dans les secteurs du e-commerce et des services numériques. Rigoureux et curieux, je suis constamment à la recherche de nouveaux défis techniques pour perfectionner mes acquis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-lg-start text-center mb-5" data-aos="fade-up">Mon Expertise</h2>
+            <div class="row g-4">
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom text-center text-lg-start">
+                        <i class="fa-solid fa-code card-icon"></i>
+                        <h4>Développement</h4>
+                        <p class="text-muted">Création d'interfaces dynamiques et de logiques back-end robustes.</p>
+                        <div class="mt-4">
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom text-center text-lg-start">
+                        <i class="fa-solid fa-database card-icon"></i>
+                        <h4>Base de données</h4>
+                        <p class="text-muted">Modélisation, requêtes optimisées et gestion sécurisée des données.</p>
+                        <div class="mt-4">
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">SQL</span>
+                            <span class="tech-badge">PHPMyAdmin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-custom text-center text-lg-start">
+                        <i class="fa-solid fa-screwdriver-wrench card-icon"></i>
+                        <h4>Outils & Frameworks</h4>
+                        <p class="text-muted">Utilisation des standards de l'industrie pour un développement agile.</p>
+                        <div class="mt-4">
+                            <span class="tech-badge">Bootstrap 5</span>
+                            <span class="tech-badge">jQuery</span>
+                            <span class="tech-badge">Git / GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-lg-start text-center mb-5" data-aos="fade-up">Mes Réalisations</h2>
+            <div class="row g-4">
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4>ShopTrack</h4>
+                            <a href="#" class="text-gold"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                        <p class="text-muted">Plateforme e-commerce complète intégrant un système de gestion des commandes, suivi des stocks en temps réel et module de livraison.</p>
+                        <div class="mt-4">
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4>Portail Étudiant</h4>
+                            <a href="#" class="text-gold"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                        <p class="text-muted">Application web sécurisée permettant aux étudiants de consulter et de régler leurs frais de scolarité en ligne avec génération de reçus.</p>
+                        <div class="mt-4">
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">API</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-5 mb-5">
+        <div class="container">
+            <div class="row" data-aos="zoom-in">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="card-custom py-5">
+                        <h2 class="mb-4">Travaillons ensemble !</h2>
+                        <p class="text-muted mb-4">Je suis actuellement à la recherche d'une opportunité de stage ou d'alternance. N'hésitez pas à me contacter pour discuter de vos projets.</p>
+                        
+                        <div class="mb-4">
+                            <a href="mailto:ehounoudjoseph@gmail.com" class="text-white text-decoration-none fs-5 d-block mb-2">
+                                <i class="fa-solid fa-envelope text-gold me-2"></i> ehounoudjoseph@gmail.com
+                            </a>
+                            <a href="tel:+2250788360021" class="text-white text-decoration-none fs-5 d-block">
+                                <i class="fa-solid fa-phone text-gold me-2"></i> +225 07 88 36 00 21
+                            </a>
+                        </div>
+
+                        <div class="social-links mt-4">
+                            <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2026 Joseph Ehounoud. Conçu avec passion.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts Bootstrap & AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse.classList.contains('show')) {
+                    var bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
