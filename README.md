@@ -44,7 +44,7 @@ Explorez mes réalisations majeures intégrées dans ce portfolio :
 
 ## 🔗 Liens Utiles
 
-- 🌐 **Portfolio en direct :** [joseph-ehounoud.netlify.app](REMPLACE_PAR_TON_LIEN_NETLIFY)
+- 🌐 **Portfolio en direct :** 
 - 🐙 **GitHub :** [Mon Profil GitHub](https://github.com/Emj11-max/portfolio-joseph.git)
 
 ---
